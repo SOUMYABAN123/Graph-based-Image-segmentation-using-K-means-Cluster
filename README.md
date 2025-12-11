@@ -13,13 +13,13 @@ This project presents an image segmentation approach that combines feature-space
 An image \( I \) is modeled as a weighted graph:
 
 \[
-G = (V, E),
+  G = (V, E),
 \]
 
 where each node \( v_i \in V \) corresponds to a pixel feature vector:
 
 \[
-\mathbf{x}_i \in \mathbb{R}^d.
+   \mathbf{x}_i \in \mathbb{R}^d.
 \]
 
 ### Edge Weights
@@ -35,24 +35,21 @@ Strong weights connect pixels with similar color, intensity, or texture.
 K-Means provides an initial segmentation by minimizing intra-cluster variance:
 
 \[
-\min_{C_1,\dots,C_k}
-\sum_{j=1}^k \sum_{\mathbf{x}_i \in C_j}
-\|\mathbf{x}_i - \mu_j\|^2.
+  \min_{C_1,\dots,C_k}
+  \sum_{j=1}^k \sum_{\mathbf{x}_i \in C_j}
+  \|\mathbf{x}_i - \mu_j\|^2.
 \]
 
 While effective in feature space, K-Means does not inherently enforce spatial smoothness, which can lead to fragmented segmentations.
 
 ## Graph-Based Regularization
 To maintain region continuity, segmentation is refined using the graph structure. A standard metric is the cut between two sets:
-
 \[
-\text{Cut}(A, B) = \sum_{i \in A} \sum_{j \in B} w_{ij}.
+  \text{Cut}(A, B) = \sum_{i \in A} \sum_{j \in B} w_{ij}.
 \]
-
 Good segmentations exhibit:
 - Small cuts (weak connections across regions),
 - Strong internal connectivity (high intra-region similarity).
-
 This reduces boundary noise and preserves spatial consistency.
 
 ## Combined Mathematical Intuition
